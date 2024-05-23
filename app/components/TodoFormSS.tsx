@@ -1,26 +1,7 @@
-import axios from "axios";
-import { revalidateTag } from "next/cache";
-import { redirect } from "next/navigation";
+import { addTodo } from "../actions";
 import React from "react";
 
 export default function TodoFormSS() {
-  const addTodo = async (data: FormData) => {
-    "use server";
-    // Logic to mutate form data...
-    const task = data.get("task")?.toString();
-    const dueDate = data.get("dueDate")?.toString();
-    const newTodoBody = {
-      task: task,
-      dueDate: dueDate,
-    };
-    // Post new Todo to our mock database
-    await axios.post("http://localhost:3000/api/todos/", newTodoBody);
-    // Refetch Todo's
-    revalidateTag("ToDo");
-    // Redirect them back to the Homepage
-    redirect("/");
-  };
-
   return (
     <div className="flex justify-center items-center h-screen bg-gray-900">
       <div className="max-w-xl mx-auto px-4 w-full">
