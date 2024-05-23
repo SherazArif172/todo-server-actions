@@ -4,9 +4,8 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 export default function TodoFormSS() {
-  
   const addTodo = async (data: FormData) => {
-    "use server"
+    "use server";
     // Logic to mutate form data...
     const task = data.get("task")?.toString();
     const dueDate = data.get("dueDate")?.toString();
@@ -21,13 +20,13 @@ export default function TodoFormSS() {
     // Redirect them back to the Homepage
     redirect("/");
   };
-  
+
   return (
     <div className="flex justify-center items-center h-screen bg-gray-900">
       <div className="max-w-xl mx-auto px-4 w-full">
         <h1 className="text-4xl font-bold mb-5">Add A New To-Do</h1>
         {/* Invoke the action using the "action" attribute */}
-        <form className="space-y-4">
+        <form action={addTodo} className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-1">Task:</label>
             <input
